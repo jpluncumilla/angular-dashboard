@@ -1,0 +1,51 @@
+<mat-drawer-container class="container">
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <!-- Side Panel Content -->
+    <mat-nav-list>
+      <ng-container *ngFor="let menuItem of menuItems">
+        <mat-list-item [routerLink]="menuItem.route">
+          <mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
+          <span mat-line>{{ menuItem.label }}</span>
+        </mat-list-item>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <!-- Main Content Area -->
+  <div class="sidenav-content">
+    <!-- Navbar -->
+    <mat-toolbar color="primary" class="toolbar">
+      <span>
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>menu_open</mat-icon>
+        </button>
+        <input type="text" class="custom-input" placeholder="Search" />
+      </span>
+      <span>
+        <mat-form-field class="selector">
+          <mat-label>User Type</mat-label>
+          <mat-select #userSelect>
+            <mat-option value="Administrator">Administrator</mat-option>
+            <mat-option value="Help Desk">Help Desk</mat-option>
+            <mat-option value="Full Control">Full Control</mat-option>
+            <mat-option value="Download">Download</mat-option>
+            <mat-option value="Read">Read</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          type="button"
+          mat-button
+          (click)="selectUser(userSelect.value)"
+          class="selector-button"
+        >
+          Select User Type
+        </button>
+      </span>
+    </mat-toolbar>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <h1>Welcome to your Dashboard</h1>
+    </div>
+  </div>
+</mat-drawer-container>
